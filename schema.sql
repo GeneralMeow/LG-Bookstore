@@ -5,12 +5,9 @@ DROP TABLE IF EXISTS books;
 CREATE TABLE books (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
-  published DATE NOT NULL,
-  fiction BOOLEAN NOT NULL,
+  published VARCHAR(255) NOT NULL,
   image_link VARCHAR(255),
-  retail_price VARCHAR(255),
-  buy_link VARCHAR(255),
-  description VARCHAR(500)
+  description TEXT
 );
 
 DROP TABLE IF EXISTS genres;
@@ -43,24 +40,24 @@ CREATE TABLE book_authors (
 
 --Fixture Data
 
-INSERT INTO
-  genres (name)
-VALUES
-  ('Economics'),
-  ('Fantasy'),
-  ('Romance'),
-  ('Horror'),
-  ('Sci-Fi'),
-  ('Historical Drama');
+-- INSERT INTO
+--   genres (name)
+-- VALUES
+--   ('Economics'),
+--   ('Fantasy'),
+--   ('Romance'),
+--   ('Horror'),
+--   ('Sci-Fi'),
+--   ('Historical Drama');
 
-INSERT INTO
-  books (title, published, fiction)
-VALUES
-  ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
-  ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
-  ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
-  ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
-  ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
-  ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
-  ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
-  ('blasd kdjsfkjsdf jsdkfksdf', now(), false);
+-- INSERT INTO
+--   books (title, published, fiction)
+-- VALUES
+--   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
+--   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
+--   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
+--   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
+--   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
+--   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
+--   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
+--   ('blasd kdjsfkjsdf jsdkfksdf', now(), false);
