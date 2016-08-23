@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS bookstore;
+-- DROP DATABASE IF EXISTS bookstore;
 
 DROP TABLE IF EXISTS books;
 
@@ -6,7 +6,7 @@ CREATE TABLE books (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   published VARCHAR(255) NOT NULL,
-  image_link VARCHAR(255),
+  thumbnail VARCHAR(255),
   description TEXT
 );
 
@@ -37,27 +37,3 @@ CREATE TABLE book_authors (
   book_id INTEGER PRIMARY KEY,
   author_id INTEGER NOT NULL
 );
-
---Fixture Data
-
--- INSERT INTO
---   genres (name)
--- VALUES
---   ('Economics'),
---   ('Fantasy'),
---   ('Romance'),
---   ('Horror'),
---   ('Sci-Fi'),
---   ('Historical Drama');
-
--- INSERT INTO
---   books (title, published, fiction)
--- VALUES
---   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
---   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
---   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
---   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
---   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
---   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
---   ('blasd kdjsfkjsdf jsdkfksdf', now(), false),
---   ('blasd kdjsfkjsdf jsdkfksdf', now(), false);
