@@ -1,5 +1,3 @@
--- DROP DATABASE IF EXISTS bookstore;
-
 DROP TABLE IF EXISTS books;
 
 CREATE TABLE books (

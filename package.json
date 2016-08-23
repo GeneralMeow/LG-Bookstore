@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha",
     "import": "node lib/import.js"
   },
   "repository": {
@@ -20,7 +20,8 @@
   "homepage": "https://github.com/EthanJStark/LG-Bookstore#readme",
   "devDependencies": {
     "google-books-search": "^0.3.0",
-    "lodash": "^4.15.0"
+    "lodash": "^4.15.0",
+    "mocha": "^3.0.2"
   },
   "dependencies": {
     "pg-promise": "^5.3.2"
