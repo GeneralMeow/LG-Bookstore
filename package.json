@@ -1,0 +1,23 @@
+{
+  "name": "LG-Bookstore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EthanJStark/LG-Bookstore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EthanJStark/LG-Bookstore/issues"
+  },
+  "homepage": "https://github.com/EthanJStark/LG-Bookstore#readme",
+  "devDependencies": {
+    "google-books-search": "^0.3.0"
+  }
+}
