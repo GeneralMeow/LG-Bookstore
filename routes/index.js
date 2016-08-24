@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const db = require( '../database' )
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const router = express.Router()
 
-module.exports = router;
+router.get('/', (request, response, next) => {
+
+  db.getBookGenres( 2 )
+    .then( genres => response.render('index', { genres }) )
+    .catch( error => {
+      console.log( error )
+      response.send( error )
+    })
+})
+
+module.exports = router

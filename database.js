@@ -1,21 +1,14 @@
+const pgp = require( 'pg-promise' )()
+const connection = { database: 'bookstore' }
+const db = pgp( connection )
 
-const getBookGenres = function(bookId){
-  const sql = `
-    SELECT
-      genres.name
-    FROM
-      genres
-    JOIN
-      book_genres
-    ON
-      genres.id = book_genres.genre_id
-    WHERE
-      book_genres.book_id = $1;
-  `
+const bookGenresQuery = () =>
+ `SELECT genres.name FROM genres JOIN book_genres ON genres.id=book_genres.genre_id WHERE book_genres.book_id=$1;`
 
-  return sql  //Do we need to return [bookId]?
+const getBookGenres = bookId => {
+  return db.any( bookGenresQuery(), [ bookId ] )
 }
 
 module.exports = {
-  getBookGenres: getBookGenres
+  getBookGenres, bookGenresQuery
 }
