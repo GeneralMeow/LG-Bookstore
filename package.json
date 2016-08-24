@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/EthanJStark/LG-Bookstore#readme",
   "devDependencies": {
+    "expect.js": "^0.3.1",
     "google-books-search": "^0.3.0",
     "lodash": "^4.15.0",
     "mocha": "^3.0.2",
