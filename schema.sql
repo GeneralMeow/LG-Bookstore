@@ -18,7 +18,7 @@ CREATE TABLE genres (
 DROP TABLE IF EXISTS book_genres;
 
 CREATE TABLE book_genres (
-  book_id INTEGER PRIMARY KEY,
+  book_id INTEGER NOT NULL,
   genre_id INTEGER NOT NULL
 );
 
@@ -32,6 +32,6 @@ CREATE TABLE authors (
 DROP TABLE IF EXISTS book_authors;
 
 CREATE TABLE book_authors (
-  book_id INTEGER PRIMARY KEY,
+  book_id INTEGER NOT NULL,
   author_id INTEGER NOT NULL
 );
