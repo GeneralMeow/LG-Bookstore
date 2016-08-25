@@ -4,13 +4,20 @@ const db = require( '../database' )
 const router = express.Router()
 
 router.get('/', (request, response, next) => {
+  let page = parseInt(request.query.page, 10);
+  if (isNaN(page)) page = 1;
 
-  db.getBookGenres( 2 )
-    .then( genres => response.render('index', { genres }) )
-    .catch( error => {
-      console.log( error )
-      response.send( error )
+  db.getAllBooks(page)
+  .catch(renderError(response))
+  .then(function(books){
+    response.render('books/index', {
+      page: page,
+      books: books
     })
+  })
+  .catch(function(error){
+    throw error
+  })
 })
 
 router.get('/books/:bookId', (request, response, next) => {

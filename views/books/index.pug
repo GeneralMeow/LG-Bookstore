@@ -1,0 +1,22 @@
+block content
+  h1 THE BOOKSTORE
+
+  table
+    thead
+      tr
+        th Title
+        th Authors
+        th Genres
+    tbody
+      for book in books
+        tr
+          td
+            a(href="/books/"+book.id)= book.title
+          td
+            for author in book.authors
+              =author.name
+              span &nbsp;
+          td
+            for genre in book.genres
+              =genre.name
+              span &nbsp;
