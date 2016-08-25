@@ -14,3 +14,5 @@ test function:
 getBookById(4).then( data => console.log(data))
 
 loadGenresForBookIds([1,2,3,4]).then( data => console.log(data))
+
+`INSERT INTO books (title, published) VALUES ('Are You There?', NOW()) RETURNING *;`

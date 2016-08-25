@@ -83,6 +83,9 @@ const getBookAndAuthorsAndGenresByBookId = (bookId) => {
   })
 }
 
+const createBookSQL = (attributes) =>
+`INSERT INTO books (title, published, genre, author) VALUES ($1, NOW(), $2, $3) RETURNING *;`
+
 module.exports = {
-  getBookGenres, bookGenresQuery, getBookAuthors, bookAuthorsQuery, getBookAndAuthorsAndGenresByBookId, loadAuthorsAndGenresForBooks, loadGenresForBookIds, loadAuthorsForBookIds, getAllQuery, getAllBooks
+  getBookGenres, bookGenresQuery, getBookAuthors, bookAuthorsQuery, getBookAndAuthorsAndGenresByBookId, loadAuthorsAndGenresForBooks, loadGenresForBookIds, loadAuthorsForBookIds, getAllQuery, getAllBooks, createBookSQL
 }
