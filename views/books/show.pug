@@ -1,0 +1,18 @@
+block content
+  h1= book.title
+
+  img(src=book.thumbnail, alt='thumbnail')
+
+  h3 Authors
+  ul
+    for author in book.authors
+      li= author.name
+
+  h3 Genres
+  ul
+    for genre in book.genres
+      li= genre.name
+
+  h3 Published
+  ul
+    li= book.published

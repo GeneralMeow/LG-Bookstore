@@ -23,6 +23,27 @@ const getBookById = bookId => {
   return db.one( getBookQuery(), [bookId] )
 }
 
+const getBookAndAuthorsAndGenresByBookId = (bookId) => {
+  return Promise.all([
+    getBookById(bookId),
+    getBookAuthors(bookId),
+    getBookGenres(bookId),
+  ])
+  .catch(function(error){
+    console.log(error)
+    throw error;
+  })
+  .then(function(results){
+    const book = results[0]
+    const authors = results[1]
+    const genres = results[2]
+
+    book.authors = authors
+    book.genres = genres
+    return book;
+  })
+}
+
 module.exports = {
-  getBookGenres, bookGenresQuery, getBookAuthors, bookAuthorsQuery
+  getBookGenres, bookGenresQuery, getBookAuthors, bookAuthorsQuery, getBookAndAuthorsAndGenresByBookId
 }
