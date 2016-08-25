@@ -16,6 +16,13 @@ const getBookAuthors = bookId => {
   return db.any( bookAuthorsQuery(), [ bookId ] )
 }
 
+const getBookQuery = () =>
+ `SELECT * FROM books WHERE id=$1;`
+
+const getBookById = bookId => {
+  return db.one( getBookQuery(), [bookId] )
+}
+
 module.exports = {
   getBookGenres, bookGenresQuery, getBookAuthors, bookAuthorsQuery
 }
