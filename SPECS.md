@@ -12,26 +12,26 @@ Creating this web application will provide exposure to:
 
 ## Specifications
 
-- [ ] Any user can add books into the system via an admin page
-- [ ] Books entered in the system are listed on the home page, in pages of 10
-- [ ] Users can search for books by title OR by author OR by genre
-- [ ] Users can view book details on a book detail page, linked to from the listing or search pages
-- [ ] Users can see the image of a book cover on the details page
-- [ ] All code submissions are peer reviewed via GitHub PR by at least two members of the team, and master is always in a stable state (tests passed, site functions)
+- [x] Any user can add books into the system via an admin page
+- [x] Books entered in the system are listed on the home page, in pages of 10
+- [x] Users can search for books by title OR by author OR by genre
+- [x] Users can view book details on a book detail page, linked to from the listing or search pages
+- [x] Users can see the image of a book cover on the details page
+- [x] All code submissions are peer reviewed via GitHub PR by at least two members of the team, and master is always in a stable state (tests passed, site functions)
 
 ### Required
 
-- [ ] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
+- [x] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
 
 ## Quality Rubric
-- [ ] Tested - All specs passing
-- [ ] Documented - Contains instructions for a user to set up app locally
-- [ ] Functional - Project runs in localhost
-- [ ] Structured - Directory structure allows new developers to quickly find and add files
-- [ ] Clearly Named - Functions, variables, files, CSS classes and ids
-- [ ] Abstracted - Small, single-responsibility functions leveraged for encapsulation & reusability
-- [ ] Git Logged - Readable and clean with clear, complete, professional commit messages
-- [ ] Not Commented - Unless truly necessary. No dead code, console.logs, fits/xits
+- [x] Tested - All specs passing
+- [x] Documented - Contains instructions for a user to set up app locally
+- [x] Functional - Project runs in localhost
+- [x] Structured - Directory structure allows new developers to quickly find and add files
+- [x] Clearly Named - Functions, variables, files, CSS classes and ids
+- [x] Abstracted - Small, single-responsibility functions leveraged for encapsulation & reusability
+- [x] Git Logged - Readable and clean with clear, complete, professional commit messages
+- [x] Not Commented - Unless truly necessary. No dead code, console.logs, fits/xits
 
 ---
 
