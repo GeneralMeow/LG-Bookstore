@@ -6,13 +6,13 @@
   1. Clone into git directory:
     
       ```
-      git clone https://github.com/EthanJStark/LG-Bookstore.git
+      > git clone https://github.com/EthanJStark/LG-Bookstore.git
       ```
   
   2. Change into bookstore directory:
       
       ```
-      cd LG-Bookstore
+      > cd LG-Bookstore
       ```
   3. Setup the database:
       We used homebrew to install postgres. There are two options for starting the postres server; this process chooses the automatic start up on login.
