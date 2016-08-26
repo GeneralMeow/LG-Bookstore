@@ -6,18 +6,22 @@ block content
   form(action='/books', method='post')
     .form-group
       label(for='title') Title
+      br
       input(name='title', type='text')
 
     .form-group
       label(for='published') Published
+      br
       input(name='published', type='text')
 
     .form-group
       label(for='thumbnail') Thumbnail URL
+      br
       input(name='thumbnail', type='text')
 
     .form-group
       label(for='description') Description
+      br
       textarea(name='description')
 
     .form-group

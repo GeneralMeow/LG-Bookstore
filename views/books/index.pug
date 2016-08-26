@@ -1,6 +1,11 @@
 extends ../layout
 
 block content
+  .clearfix
+    if page > 1
+      a(href="/?page="+(page-1)) Previous
+    a.pull-right(href="/?page="+(page+1)) Next
+
   .row
     .col-md-3
       .well
@@ -39,3 +44,7 @@ block content
                 for genre in book.genres
                   =genre.name
                   span &nbsp;
+    .clearfix
+      if page > 1
+        a(href="/?page="+(page-1)) Previous
+      a.pull-right(href="/?page="+(page+1)) Next

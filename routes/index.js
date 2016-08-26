@@ -42,7 +42,7 @@ router.get('/books/:bookId', (request, response, next) => {
 
 router.post( '/books', (request, response) => {
   const book = request.body
-  
+
   db.createBook( book )
     .then( id => response.redirect( `/books/${id}` ))
     .catch( error => renderError( error ))

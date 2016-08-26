@@ -1,18 +1,20 @@
+extends ../layout
+
 block content
-  h1= book.title
+  h2= book.title
 
   img(src=book.thumbnail, alt='thumbnail')
 
-  h3 Authors
+  h4 Authors
   ul
     for author in book.authors
       li= author.name
 
-  h3 Genres
+  h4 Genres
   ul
     for genre in book.genres
       li= genre.name
 
-  h3 Published
+  h4 Published
   ul
     li= book.published
