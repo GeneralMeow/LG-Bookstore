@@ -2,6 +2,8 @@ const pgp = require( 'pg-promise' )()
 const connection = { database: 'bookstore' }
 const db = pgp( connection )
 
+const PAGE_SIZE = 10
+
 const bookGenresQuery = () =>
  `SELECT genres.name FROM genres JOIN book_genres ON genres.id=book_genres.genre_id WHERE book_genres.book_id=$1;`
 
@@ -38,20 +40,28 @@ const loadGenresForBookIds = (bookIds) => {
 }
 
 const getAllQuery = (offset) =>
- `SELECT * FROM books LIMIT 10 OFFSET $1;`
+ `SELECT * FROM books LIMIT ${PAGE_SIZE} OFFSET $1;`
 
 const getAllBooks = (page) => {
-  const offset = ( page-1 ) * 10
+  const offset = ( page-1 ) * PAGE_SIZE
   return db.any( getAllQuery(offset), [offset] )
     .then(loadAuthorsAndGenresForBooks)
 }
 
+const getAllGenres = () => {
+  return db.any( 'SELECT * FROM genres' )
+}
+
 const loadAuthorsAndGenresForBooks = (books) => {
   const bookIds = books.map(book => book.id)
+  console.log( 'jaevla', books, bookIds )
+
   return Promise.all([
     loadAuthorsForBookIds(bookIds),
     loadGenresForBookIds(bookIds),
-  ]).then(results => {
+  ])
+  .catch( error => console.log( error ))
+  .then(results => {
     const authors = results[0]
     const genres = results[1]
     books.forEach(book => {
@@ -83,9 +93,52 @@ const getBookAndAuthorsAndGenresByBookId = (bookId) => {
   })
 }
 
-const createBookSQL = (attributes) =>
-`INSERT INTO books (title, published, genre, author) VALUES ($1, NOW(), $2, $3) RETURNING *;`
+const searchForBooks = ( search_query, genres, page ) => {
+  let variables = []
+  let sql = `SELECT DISTINCT(books.*) FROM books`
+
+  let whereConditions = []
+
+  if( genres.length > 0 ) {
+    sql += ` LEFT JOIN book_genres ON book_genres.book_id=books.id`
+
+    variables.push( genres )
+    whereConditions.push( ` book_genres.genre_id IN ($${variables.length}:csv)` )
+  }
+
+  if( search_query.length > 0 ) {
+    sql += ` LEFT JOIN book_authors ON book_authors.book_id=books.id
+      LEFT JOIN authors ON authors.id=book_authors.author_id`
+
+    variables.push( search_query.toLowerCase()
+      .replace(/^ */, '%')
+      .replace(/ *$/, '%')
+      .replace(/ +/g, '%')
+    )
+
+    whereConditions.push(
+      ` (LOWER(books.title) LIKE $${variables.length} OR
+      LOWER(authors.name) LIKE $${variables.length})`
+    )
+  }
+
+  if( whereConditions.length > 0 ) {
+    sql += ` WHERE ${whereConditions.join(' AND ')}`
+  }
+
+  variables.push( ( page - 1 ) * PAGE_SIZE )
+  sql += ` LIMIT ${PAGE_SIZE} OFFSET $${variables.length}`
+
+  console.log('SQL --->', sql, variables)
+
+  return db.any( sql, variables )
+    .catch( error => console.log( error ) )
+    .then( books => loadAuthorsAndGenresForBooks( books ))
+}
 
 module.exports = {
-  getBookGenres, bookGenresQuery, getBookAuthors, bookAuthorsQuery, getBookAndAuthorsAndGenresByBookId, loadAuthorsAndGenresForBooks, loadGenresForBookIds, loadAuthorsForBookIds, getAllQuery, getAllBooks, createBookSQL
+  getBookGenres, bookGenresQuery, getBookAuthors, bookAuthorsQuery,
+  getBookAndAuthorsAndGenresByBookId, loadAuthorsAndGenresForBooks,
+  loadGenresForBookIds, loadAuthorsForBookIds, getAllQuery, getAllBooks,
+  searchForBooks, getAllGenres
 }

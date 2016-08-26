@@ -1,24 +1,41 @@
 extends ../layout
 
 block content
-  h1 THE BOOKSTORE
+  .row
+    .col-md-3
+      .well
+        form
+          .form-group
+            label Search
+            input(type='text' name='search' placeholder='Author or Title')
 
-  table
-    thead
-      tr
-        th Title
-        th Authors
-        th Genres
-    tbody
-      for book in books
-        tr
-          td
-            a(href="/books/"+book.id)= book.title
-          td
-            for author in book.authors
-              =author.name
-              span &nbsp;
-          td
-            for genre in book.genres
-              =genre.name
-              span &nbsp;
+          .form-group
+            label Genres
+
+          each genre in genres
+            .form-group
+              label
+                input(type='checkbox' name='genres[]' value=genre.id)
+                span= genre.name
+
+          button(type='submit') Search
+    .col-md-9
+      table
+        thead
+          tr
+            th Title
+            th Authors
+            th Genres
+        tbody
+          for book in books
+            tr
+              td
+                a(href="/books/"+book.id)= book.title
+              td
+                for author in book.authors
+                  =author.name
+                  span &nbsp;
+              td
+                for genre in book.genres
+                  =genre.name
+                  span &nbsp;
