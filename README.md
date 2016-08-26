@@ -31,7 +31,7 @@
   3. Start Server:
       
       ```
-      npm start
+      > npm start
       ```
   
   4. View our app by going to [The Bookstore](http://localhost:3000/) on your browser once you have started the server locally.
