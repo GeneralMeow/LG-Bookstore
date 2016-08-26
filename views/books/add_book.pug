@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  h1 Add Book
+
+  form(action='/books', method='post')
+    .form-group
+      label(for='title') Title
+      input(name='title', type='text')
+
+    .form-group
+      label(for='published') Published
+      input(name='published', type='text')
+
+    .form-group
+      label(for='thumbnail') Thumbnail URL
+      input(name='thumbnail', type='text')
+
+    .form-group
+      label(for='description') Description
+      textarea(name='description')
+
+    .form-group
+      label(for='author_id') Author
+        select(name='author_id')
+          each author in authors
+            option(value=author.id, label=author.name)
+
+    .form-group
+      label(for='genre_id') Genre
+        select(name='genre_id')
+          each genre in genres
+            option(value=genre.id, label=genre.name)
+
+    .form-group
+      button.btn.btn-info(type='submit') Add Book

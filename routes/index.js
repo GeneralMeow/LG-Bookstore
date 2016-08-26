@@ -22,6 +22,12 @@ router.get('/', (request, response, next) => {
   .catch( renderError( response ) )
 })
 
+router.get( '/books/add', (request, response) => {
+  db.getAllAuthorsAndGenres()
+    .then( result => response.render( 'books/add_book', { authors: result.authors, genres: result.genres } ) )
+    .catch( error => response.send({ error, message: error.message }))
+})
+
 router.get('/books/:bookId', (request, response, next) => {
 
   db.getBookAndAuthorsAndGenresByBookId(request.params.bookId)
@@ -30,9 +36,16 @@ router.get('/books/:bookId', (request, response, next) => {
       response.render('books/show', {
         book: book
       })
-      // console.log('book: ', book)
     })
     .catch(renderError(response))
+})
+
+router.post( '/books', (request, response) => {
+  const book = request.body
+  
+  db.createBook( book )
+    .then( id => response.redirect( `/books/${id}` ))
+    .catch( error => renderError( error ))
 })
 
 const renderError = function(response){
