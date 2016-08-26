@@ -10,3 +10,6 @@ I used homebrew to install postgres.  There are two options for starting the pos
 > createdb bookstore
 > psql bookstore < schema.sql
 ```
+
+Database Schema:
+[schema!](screenshots/Screen Shot 2016-08-25 at 3.56.01 PM.png)
